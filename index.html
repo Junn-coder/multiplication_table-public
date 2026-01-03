@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Multiplication Table Practice</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="top-bar">
+        <button class="mode-btn" id="mode-guide" type="button" title="Guide">
+          Guide
+        </button>
+        <button
+          class="mode-btn"
+          id="mode-study"
+          type="button"
+          title="Select one to study"
+        >
+          Study
+        </button>
+        <button class="mode-btn speak-btn" id="mode-speak" type="button" title="Speak">
+          Speak
+        </button>
+        <button
+          class="mode-btn"
+          id="mode-test"
+          type="button"
+          title="Select one or more to test"
+        >
+          Test
+        </button>
+        <button class="mode-btn feedback-btn" id="mode-feedback" type="button" title="Feedback">
+          Feedback
+        </button>
+        <button class="sound-btn top-sound-btn" id="sound-btn" type="button" aria-label="Toggle sound" title="Sound on">
+          <span class="sound-icon sound-on" aria-hidden="true"></span>
+        </button>
+        <div class="top-spacer"></div>
+      </header>
+
+      <aside class="side-bar" aria-label="Select number">
+        <div class="number-list" id="number-list"></div>
+      </aside>
+
+      <main class="content">
+        <div class="content-frame">
+          <div class="equation-row">
+            <div class="equation" id="equation">1 × 1 = 1</div>
+          </div>
+
+          <div class="equation-text" id="equation-text" role="status" aria-live="polite"></div>
+
+          <section class="speak-panel" id="speak-panel" hidden aria-live="polite">
+            <div class="speak-instruction" id="speak-instruction">Say the equation aloud.</div>
+            <div class="speak-visual">
+              <div class="mic-icon" aria-hidden="true"></div>
+              <div class="voice-bars" aria-hidden="true">
+                <span class="voice-bar"></span>
+                <span class="voice-bar"></span>
+                <span class="voice-bar"></span>
+                <span class="voice-bar"></span>
+                <span class="voice-bar"></span>
+                <span class="voice-bar"></span>
+                <span class="voice-bar"></span>
+                <span class="voice-bar"></span>
+                <span class="voice-bar"></span>
+              </div>
+            </div>
+            <div class="speak-result" id="speak-result"></div>
+          </section>
+
+          <div class="sound-hint" id="sound-hint" role="status" aria-live="polite"></div>
+
+          <div class="image-frame" id="image-frame" aria-label="Equation image"></div>
+
+          <section class="study-practice" id="study-practice" aria-live="polite"></section>
+
+          <section class="test-panel" id="test-panel" hidden>
+            <div class="test-questions" id="test-questions"></div>
+          </section>
+
+          <div class="status-bar" role="status" aria-live="polite">
+            <div class="status-start" id="status-start">
+              <label class="start-label" for="start-range">Start from:</label>
+              <input class="start-range" id="start-range" type="range" min="0" max="9" value="0" />
+              <span class="start-value" id="start-value">0</span>
+            </div>
+            <div class="status-text" id="status-bar"></div>
+            <div class="status-actions">
+              <button class="nav-btn" id="prev-btn" type="button" aria-label="Previous equation">&lt;&lt;</button>
+              <button class="nav-btn" id="next-btn" type="button" aria-label="Next equation">&gt;&gt;</button>
+              <button class="result-btn" id="result-btn" type="button">Result</button>
+              <button class="progress-btn" id="progress-btn" type="button">Progress Map</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-overlay" id="progress-modal" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="progress-title">
+        <div class="modal-header">
+          <div class="modal-title" id="progress-title">Progress Map</div>
+        </div>
+        <div class="modal-body" id="progress-body"></div>
+        <div class="modal-footer">
+          <button class="modal-btn reset-btn" id="progress-reset" type="button">Reset</button>
+          <button class="modal-btn ok-btn" id="progress-ok" type="button">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="guide-modal" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="guide-title">
+        <div class="modal-header">
+          <div class="modal-title guide-title" id="guide-title">Learn Multiplication Table v1.0</div>
+        </div>
+        <div class="modal-body">
+          <div class="guide-text">
+            <div class="guide-section">
+              <div class="guide-heading">Purpose</div>
+              <p>
+                This program helps kids master multiplication tables. It works best when parents
+                practice together with kids at the beginning. This program is <strong>free</strong> and
+                <strong>ad-free</strong>. The app is <strong>kid-friendly</strong> and focuses on
+                <strong>practice</strong>.
+              </p>
+            </div>
+            <div class="guide-section">
+              <div class="guide-heading">Usage</div>
+              <ol class="guide-steps">
+                <li>Pick a number on the left.</li>
+                <li>Use Study to read, view the apples, and fill the practice box.</li>
+                <li>Labels appear briefly; hover the image to see row, column, and product again.</li>
+                <li>Tap Speak, listen to "a times b equals", then say the answer word.</li>
+                <li>Use Test to answer questions and then show results.</li>
+                <li>Open Progress to see what needs more practice.</li>
+                <li>Use Feedback to share a rating and comment.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-end">
+          <button class="modal-btn ok-btn" id="guide-ok" type="button">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="feedback-modal" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
+        <div class="modal-header">
+          <div class="modal-title" id="feedback-title">Feedback</div>
+        </div>
+        <div class="modal-body">
+          <div class="feedback-row">
+            <div class="feedback-label">Rate:</div>
+            <button class="feedback-rate" id="rate-good" type="button" aria-label="Good">👍</button>
+            <button class="feedback-rate" id="rate-bad" type="button" aria-label="Bad">👎</button>
+          </div>
+          <label class="feedback-label feedback-label-space" for="feedback-text">Comment (optional)</label>
+          <textarea
+            class="feedback-text"
+            id="feedback-text"
+            rows="4"
+            placeholder="Suggestion or bug report"
+          ></textarea>
+          <div class="feedback-note">
+            Your feedback helps improve the app. Check back later for updates.
+          </div>
+        </div>
+        <div class="modal-footer modal-footer-end">
+          <button class="modal-btn cancel-btn" id="feedback-cancel" type="button">Cancel</button>
+          <button class="modal-btn ok-btn" id="feedback-ok" type="button">Send</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.min.js"></script>
+  </body>
+</html>
